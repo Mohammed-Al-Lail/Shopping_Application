@@ -54,7 +54,7 @@ class MySearchBar extends StatelessWidget {
 
             const Expanded(child: SizedBox() ),
 
-            Container(
+            Container( // This is the dark grey vertical line inside the search bar
               width: 2,
               height: double.maxFinite,
               color: Colors.grey[600],
