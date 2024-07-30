@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Product{
 
 
-  Product({
+  Product({ // constrouctor
 
     required this.title,
     required this.imagePath,
@@ -11,7 +11,7 @@ class Product{
     required this.itemColors,
   });
 
-
+ // variables of the class
   final String title;
   final String imagePath;
   final int price;
@@ -19,7 +19,7 @@ class Product{
 }
 
 
-// List of diffrent products
+// List of many diffrent products
 List <Product> allProducts = [
 
 Product(

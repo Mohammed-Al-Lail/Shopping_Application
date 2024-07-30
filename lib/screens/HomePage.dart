@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/utilities/AdvSlider.dart';
 import 'package:shoping_center_project/utilities/AllCategories.dart';
 import 'package:shoping_center_project/utilities/MySearchBar.dart';
 import 'package:shoping_center_project/utilities/myAppar.dart';
+import 'package:shoping_center_project/utilities/productCard.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -63,6 +65,13 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+
+           
+
+            
+            
+            
+            
 
             
             
