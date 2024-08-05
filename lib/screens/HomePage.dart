@@ -19,69 +19,90 @@ class HomePage extends StatelessWidget {
       
       body:  SafeArea(
 
-        child: Column(
-        
-          children: [
-            
-            // for my appar
-            const MyAppar(),
-            const SizedBox(height: 10,),
-
-            // for my Search bar
-            const MySearchBar(),
-            const SizedBox(height: 10,),
-
-            // for ADV slider
-            AdvSlider(),
-            const SizedBox(height: 10,),
-
-            // for categories
-            const AllCategories(),
-            
-            
-            // Special For you + See all 
-            Padding(
-              padding: const EdgeInsets.only(left: 8 ,right: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+        child: SingleChildScrollView(
+          child: Column(
+          
+            children: [
               
-                  const Text(
-                    "Special For you",
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+              // for my appar
+              const MyAppar(),
+              const SizedBox(height: 10,),
+          
+              // for my Search bar
+              const MySearchBar(),
+              const SizedBox(height: 10,),
+          
+              // for ADV slider
+              AdvSlider(),
+              const SizedBox(height: 10,),
+          
+              // for categories
+              const AllCategories(),
               
-                  Text(
-                    "See all ",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey[100],
+              
+              // Special For you + See all 
+              Padding(
+                padding: const EdgeInsets.only(left: 8 ,right: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                
+                    const Text(
+                      "Special For you",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
-                  ),
-                ],
+                
+                    Text(
+                      "See all ",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[100],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
-           
+              const SizedBox(height: 10,),
 
-            
-            
-            
-            
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: GridView.builder(
+                  padding: EdgeInsets.all(10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  itemCount: allProducts.length,
+                   itemBuilder: (context, index) {
+                     return productCard(product: allProducts[index]);
+                   },
+                   ),
+              ),
 
-            
-            
-
-
-        
-        const Expanded(child: SizedBox()),
-          ],
-        
-        
+               const SizedBox(height: 20,),
+          
+              
+          
+             
+          
+              
+              
+              
+              
+          
+              
+              
+          
+          
+          
+          
+            ],
+          
+          
+          ),
         ),
       ),
 

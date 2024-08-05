@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 
 class productCard extends StatelessWidget {
@@ -16,7 +17,7 @@ class productCard extends StatelessWidget {
     return Container(
 
       width: 300,
-      height: 300,
+      height: 320,
 
       decoration: BoxDecoration(
         color: Colors.grey[400],
@@ -27,9 +28,14 @@ class productCard extends StatelessWidget {
 
         children: [
 
-          Image.asset(
-            product.imagePath,
-            fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.asset(
+              product.imagePath,
+              width: 250,
+              height: 250,
+              //fit: BoxFit.cover,
+            ),
           ),
 
           const SizedBox(height: 10,),

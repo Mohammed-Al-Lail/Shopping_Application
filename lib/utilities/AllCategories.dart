@@ -8,15 +8,17 @@ class AllCategories extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return Expanded( // (ListViwe.bulder) and (ListView.separated) must be wrapped with Expanded widget
-
+    return SizedBox(
+      height: 110,
+       width: double.infinity,
+       
       child: ListView.separated( //ListView.separated make a space between each item and another
         
         scrollDirection: Axis.horizontal,
         itemCount: Categories.length,
       
         itemBuilder: (context , index){
-
+      
           return Column(
       
             children: [
@@ -48,12 +50,11 @@ class AllCategories extends StatelessWidget {
       
           );
         }, // End of item bulder 
-
+      
         separatorBuilder: (context, index) { // this method determin the seperation between each widget
           return const SizedBox(width: 20,);
         },
       ),
-
     );
 
 
