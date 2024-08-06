@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/utilities/AdvSlider.dart';
 import 'package:shoping_center_project/utilities/AllCategories.dart';
+import 'package:shoping_center_project/utilities/MyProductsGridview.dart';
 import 'package:shoping_center_project/utilities/MySearchBar.dart';
 import 'package:shoping_center_project/utilities/myAppar.dart';
-import 'package:shoping_center_project/utilities/productCard.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
           
             children: [
               
-              // for my appar
+              // for my appar ( 2 containers with icons)
               const MyAppar(),
               const SizedBox(height: 10,),
           
@@ -47,10 +48,10 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                 
-                    const Text(
+                     Text(
                       "Special For you",
-                      style: TextStyle(
-                        fontSize: 26,
+                      style: GoogleFonts.acme( // using google fonst package
+                        fontSize: 28,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -58,8 +59,8 @@ class HomePage extends StatelessWidget {
                     Text(
                       "See all ",
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                         color: Colors.grey[100],
                       ),
                     ),
@@ -69,20 +70,12 @@ class HomePage extends StatelessWidget {
 
               const SizedBox(height: 10,),
 
-              SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: GridView.builder(
-                  padding: EdgeInsets.all(10),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                  itemCount: allProducts.length,
-                   itemBuilder: (context, index) {
-                     return productCard(product: allProducts[index]);
-                   },
-                   ),
-              ),
 
-               const SizedBox(height: 20,),
+            // suggeted items in gridview
+               MyProductsGridview(itemsList: suggestedProductsList,),
+              const SizedBox(height: 20,),
+
+              
           
               
           

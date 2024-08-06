@@ -9,6 +9,7 @@ class Product{
     required this.imagePath,
     required this.price,
     required this.itemColors,
+    
   });
 
  // variables of the class
@@ -16,11 +17,15 @@ class Product{
   final String imagePath;
   final int price;
   final List<Color> itemColors ;
-}
+  bool isFav = false ; // this variable is to know if the product was selected to be favorite or not
+
+} // End of the class
 
 
-// List of many diffrent products
-List <Product> allProducts = [
+
+
+// List of the suggested products 
+List <Product> suggestedProductsList = [
 
 Product(
 
@@ -28,6 +33,15 @@ Product(
   imagePath: "lib/images/products/iphon.jpg",
   price: 3200,
   itemColors: [Colors.black , Colors.blueAccent , Colors.red]
+
+),
+
+Product(
+
+  title: "Ipad Air",
+  imagePath: "lib/images/products/ipadAir.jpg",
+  price: 2999,
+  itemColors: [Colors.grey.shade800 , Colors.blueAccent.shade100 , Colors.green.shade100]
 
 ),
 
@@ -71,7 +85,7 @@ Product(
 
 Product(
 
-  title: "Iphone Screen Protecter",
+  title: "Iphone Protecter",
   imagePath: "lib/images/products/protecter.jpg",
   price: 140,
   itemColors: [Colors.white]
@@ -92,3 +106,8 @@ Product(
 
 
 ];
+
+
+
+// This is a List of the favorite Products
+List<Product> favoriteProductsList = []; // we will add to this list the favorite products

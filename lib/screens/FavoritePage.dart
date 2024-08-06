@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shoping_center_project/classes/Product.dart';
+import 'package:shoping_center_project/utilities/MyProductsGridview.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -12,35 +15,32 @@ class FavoritePage extends StatelessWidget {
       
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title:  Text(
 
           "Favorite Page",
-
-          style: TextStyle(
+          style: GoogleFonts.aboreto( // using google fonst package
               fontSize: 50,
               fontWeight: FontWeight.bold,
         ),
       ),
 
       backgroundColor: Colors.deepPurple,
-      toolbarHeight: 100,
+      toolbarHeight: 70,
     ),
 
 
-    body: Column(
-
-      children: [
-
-        SizedBox(height: 30,),
-        Center(
-          child: Icon(
-            Icons.fmd_good,
-            size: 50,
-            color: Colors.red,
-          ),
-        )
-
-      ],
+    body:  SingleChildScrollView(
+      child: Column(
+      
+        children: [
+      
+          const SizedBox(height: 30,),
+        // for the choosen favorite items in gridview
+          MyProductsGridview(itemsList: favoriteProductsList), 
+          
+      
+        ],
+      ),
     ),
 
     );

@@ -1,15 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 
-class productCard extends StatelessWidget {
+// ignore: must_be_immutable
+class productCard extends StatefulWidget {
 
-  const productCard({
+   productCard({ // constructor
     super.key,
-    required this.product
+    required this.product 
   });
 
-  final Product product ;
+  final Product product ; // this class required a product
+
+
+
+  @override
+  State<productCard> createState() => _productCardState();
+}
+
+class _productCardState extends State<productCard> {
+
+  void tagleFavorite(){ // This method is to toggle the isFav statues for the product
+
+    setState(() {
+      widget.product.isFav = ! widget.product.isFav; // revers the statues when clickin on the favorite container
+    });
+
+    if(  widget.product.isFav && !favoriteProductsList.contains(widget.product) ){ // if the product was favorite and does not exist already on the favorite list
+
+      favoriteProductsList.add(widget.product); // add the product to the favorite List
+    }
+    else {
+      favoriteProductsList.remove(widget.product); // remove the product from the favorite list
+    }
+
+  } // End of the method
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,38 +42,68 @@ class productCard extends StatelessWidget {
     return Container(
 
       width: 300,
-      height: 320,
+      height: 340,
 
       decoration: BoxDecoration(
-        color: Colors.grey[400],
+        color: Colors.deepPurple[300],
         borderRadius: BorderRadius.circular(20)
       ),
 
       child: Column(
-
+      
         children: [
-
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Image.asset(
-              product.imagePath,
-              width: 250,
-              height: 250,
-              //fit: BoxFit.cover,
-            ),
+      
+          Row( // This row will have the small favorite container
+            mainAxisAlignment: MainAxisAlignment.end, // make the favorite button at the right
+            children: [
+      
+              ClipRRect( // to use borderRadius parameter
+                borderRadius: BorderRadius.circular(15),
+      
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4,right: 8),
+      
+                  child: GestureDetector(
+                    onTap: tagleFavorite ,
+      
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      color: Colors.orange.shade300,
+                      
+                      child:  Icon(
+                        Icons.favorite_outlined,
+                        color: widget.product.isFav ? Colors.red.shade800 : Colors.white, // if the product was favorite , make the color red , else white
+                        size: 30,
+                      ),
+                            
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ), // End of small favorite container
+      
+      
+          Image.asset(
+            widget.product.imagePath,
+            width: 250,
+            height: 230,
+            //fit: BoxFit.cover,
           ),
-
-          const SizedBox(height: 10,),
-
+      
+      
           Text(
-            product.title,
+            widget.product.title,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: FontWeight.w900,
             ),
           ),
 
-
+          const SizedBox(height: 15,),
+      
+      
           Padding(
             padding: const EdgeInsets.only(left: 8 , right: 8),
             child: Row(
@@ -58,7 +113,7 @@ class productCard extends StatelessWidget {
               children: [
             
                 Text(
-                  '${product.price} SAR' ,
+                  '\$${widget.product.price} SAR' ,
                   style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -67,17 +122,21 @@ class productCard extends StatelessWidget {
             
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                  children: List.generate(
-
-                    product.itemColors.length,
-                     (index) => Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: product.itemColors[index],
-                        shape: BoxShape.circle,
-                      ),
+      
+                  children: List.generate( // we will generate a list
+      
+                    widget.product.itemColors.length, // The length of the index parameter
+      
+                     (index) => Padding(
+                       padding: const EdgeInsets.only(left: 3),
+                       child: Container( // return container as (index) times
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: widget.product.itemColors[index],
+                          shape: BoxShape.circle,
+                        ),
+                       ),
                      ),
                      
                      
@@ -86,7 +145,7 @@ class productCard extends StatelessWidget {
               ],
             ),
           )
-
+      
         ],
       ),
     );
