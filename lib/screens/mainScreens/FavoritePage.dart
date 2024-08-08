@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoping_center_project/classes/Product.dart';
-import 'package:shoping_center_project/utilities/MyProductsGridview.dart';
+import 'package:shoping_center_project/utilities/commonUtilites/MyProductsGridview.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -10,6 +10,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
 
       backgroundColor: Colors.deepPurple[100],
       
@@ -26,6 +27,7 @@ class FavoritePage extends StatelessWidget {
 
       backgroundColor: Colors.deepPurple,
       toolbarHeight: 70,
+      automaticallyImplyLeading: false, // to prevent the implicit back arrow button
     ),
 
 

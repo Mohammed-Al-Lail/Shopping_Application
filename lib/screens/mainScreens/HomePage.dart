@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoping_center_project/classes/Product.dart';
-import 'package:shoping_center_project/utilities/AdvSlider.dart';
-import 'package:shoping_center_project/utilities/AllCategories.dart';
-import 'package:shoping_center_project/utilities/MyProductsGridview.dart';
-import 'package:shoping_center_project/utilities/MySearchBar.dart';
-import 'package:shoping_center_project/utilities/myAppar.dart';
+import 'package:shoping_center_project/utilities/HomePageutilites/AdvSlider.dart';
+import 'package:shoping_center_project/utilities/HomePageutilites/AllCategories.dart';
+import 'package:shoping_center_project/utilities/HomePageutilites/MyAppar.dart';
+import 'package:shoping_center_project/utilities/commonUtilites/MyProductsGridview.dart';
+import 'package:shoping_center_project/utilities/HomePageutilites/MySearchBar.dart';
+
 
 
 class HomePage extends StatelessWidget {
@@ -76,19 +77,6 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20,),
 
               
-          
-              
-          
-             
-          
-              
-              
-              
-              
-          
-              
-              
-          
           
           
           

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_center_project/classes/categories.dart';
+import 'package:shoping_center_project/screens/categoriesScreen/identicalCategoriesPage.dart';
 
 class AllCategories extends StatelessWidget {
   const AllCategories({super.key});
@@ -27,19 +28,24 @@ class AllCategories extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8 , right: 8),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    Categories[index].imagePath, // go to categorie class to understand
-                    fit: BoxFit.cover,
-                    height: 70,
-                    width: 70, 
-                    
-                    ),
+                  child: GestureDetector(
+                    onTap: (){ // go to the identical category page depending on the category
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> identicalCategoriesPage(categorie: Categories[index])));
+                    },
+                    child: Image.asset(
+                      Categories[index].imagePath, // go to categorie class to understand
+                      fit: BoxFit.cover,
+                      height: 70,
+                      width: 70, 
+                      
+                      ),
+                  ),
                 ),
               ),
                 const SizedBox(height: 10,),
       
                 Text(
-                  Categories[index].title, // go to categorie class to understand
+                  Categories[index].categoryTitle, // go to categorie class to understand
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight:  FontWeight.bold,

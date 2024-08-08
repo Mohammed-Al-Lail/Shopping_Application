@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoping_center_project/screens/FavoritePage.dart';
-import 'package:shoping_center_project/screens/HomePage.dart';
-import 'package:shoping_center_project/screens/ShoppingPage.dart';
+import 'package:shoping_center_project/screens/mainScreens/FavoritePage.dart';
+import 'package:shoping_center_project/screens/mainScreens/HomePage.dart';
+import 'package:shoping_center_project/screens/mainScreens/ShoppingPage.dart';
 
 class BottomApparPage extends StatefulWidget {
   const BottomApparPage({super.key});
@@ -12,7 +12,7 @@ class BottomApparPage extends StatefulWidget {
 
 class _BottomApparState extends State<BottomApparPage> {
 
-int _pageIndex= 0 ;
+int _pageIndex= 2 ; // the defult page ( at the begining the defult page will be the home page)
 List <Widget> screensList = [
   Scaffold(),
   const FavoritePage(),

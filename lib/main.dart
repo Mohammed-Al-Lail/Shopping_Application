@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoping_center_project/utilities/BottomAppar.dart';
+import 'package:shoping_center_project/BottomApparPage.dart';
 
 
 void main() {
