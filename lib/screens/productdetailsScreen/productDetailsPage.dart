@@ -5,16 +5,24 @@ import 'package:shoping_center_project/utilities/productDetailsPageUtilites/prod
 import 'package:shoping_center_project/utilities/productDetailsPageUtilites/productdetailsScreenAppBar.dart';
 
 // ignore: camel_case_types
-class productDetailPage extends StatelessWidget {
+class productDetailPage extends StatefulWidget {
 
-  const productDetailPage({ // constructor
+   const productDetailPage({ // constructor
 
     super.key,
     required this.product, 
     
     });
 
-final Product product ; // this class required a product 
+      final Product product ; // this class required a product 
+
+  @override
+  State<productDetailPage> createState() => _productDetailPageState();
+}
+
+class _productDetailPageState extends State<productDetailPage> {
+ 
+      int colorIndex=0 ; // will be used to choose the product color
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +37,13 @@ final Product product ; // this class required a product
           children: [
 
             // for the appbar
-            productdetailsScreenAppBar(product: product,),
+            productdetailsScreenAppBar(product: widget.product,),
             const SizedBox(height: 10,),
 
             // for product image
             Image.asset(
 
-              product.imagePath,
+              widget.product.imagePath,
               height: 250,
               width: 450,
 
@@ -64,7 +72,7 @@ final Product product ; // this class required a product
               const SizedBox(height: 10,),
 
               // for the product descreption
-              productDescreption(product: product),
+              productDescreption(product: widget.product),
               const SizedBox(height: 20,),
 
               // for product price and product colors
@@ -77,7 +85,7 @@ final Product product ; // this class required a product
                 children: [
               
                   Text(
-                    '\$${product.price} SAR' ,
+                    '\$${widget.product.price} SAR' ,
                     style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
@@ -88,16 +96,28 @@ final Product product ; // this class required a product
                 
                     children: List.generate( // we will generate a list
         
-                      product.itemColors.length, // The length of the index parameter
+                      widget.product.itemColors.length, // The length of the index parameter
         
-                       (index) => Container( // return container as (index) times
-                        width: 40,
-                        height: 40,
-                        margin: const EdgeInsets.only(left: 5),
-                        decoration: BoxDecoration(
-                          color: product.itemColors[index],
-                          shape: BoxShape.circle,
-                        ),
+                       (index) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            colorIndex=index ; // change the value of color index
+                          });
+                        },
+                         child: Container( // return container as (index) times
+                          width: index == colorIndex ? 50 : 35,
+                          height: index == colorIndex ? 50 : 35,
+                          margin: const EdgeInsets.only(left: 5),
+                          decoration: BoxDecoration(
+                            color: widget.product.itemColors[index],
+                            shape: BoxShape.circle,
+                         
+                            border: Border.all(
+                              color: index == colorIndex ? Colors.black : Colors.transparent ,
+                              width: index == colorIndex ? 4 : 0,
+                            ),
+                          ),
+                         ),
                        ),
                        
                        
@@ -110,7 +130,7 @@ final Product product ; // this class required a product
            const SizedBox(height: 100,),
 
            //for add the product to the cart
-            addTOCartButton(product: product,),
+            addTOCartButton(product: widget.product,),
 
 
               

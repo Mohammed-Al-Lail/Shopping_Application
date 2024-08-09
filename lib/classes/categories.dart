@@ -12,12 +12,12 @@ Categorie({ // constructor
 
 final String imagePath ;
 final String categoryTitle ;
-final List<Product> productsList ;
+final List<Product> productsList ; // each category will has list of products from the same category
 
 
 }
 
-List <Categorie> Categories = [
+List <Categorie> allCategoriesList = [
 
   Categorie( // shoses
     imagePath: "lib/images/shoses/shoes.jpg",
@@ -196,9 +196,15 @@ Product(
 
     imagePath: "lib/images/manFasion/manFasion.jpg",
     categoryTitle: "Man's fasion",
-    productsList: [],
 
-  ),
+    productsList: [
+
+      
+
+
+    ], // End of man Fasion products list
+
+  ), // End of man fasion Category
 
 
 

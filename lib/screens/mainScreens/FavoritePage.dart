@@ -31,7 +31,20 @@ class FavoritePage extends StatelessWidget {
     ),
 
 
-    body:  SingleChildScrollView(
+    body:  favoriteProductsList.isEmpty?  // is the favorit list empty ?
+
+        const Center(  // if the list was empty
+          child: Text(
+            "No items on your favorit list",
+              style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w400,
+              color: Colors.black54
+              ),
+            ),
+        )
+    
+    :SingleChildScrollView( // if the list was not empty
       child: Column(
       
         children: [

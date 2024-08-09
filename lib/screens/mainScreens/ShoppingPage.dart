@@ -110,10 +110,15 @@ class ShopingPage extends StatelessWidget {
         Container(
         
           width: double.infinity,
-          height: 66,
-          color: Colors.red.shade800,
+          height: 78,
+          color: Colors.green.shade800,
         
-          child: Text(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+             const SizedBox(width: 1,),
+              Text(
             "Total Price: \$${ totalShoppingPrice()} SAR",
             textAlign: TextAlign.center,
             style: const TextStyle(
@@ -122,6 +127,40 @@ class ShopingPage extends StatelessWidget {
               color: Colors.white
             ),
           ) ,
+
+          // for Pay Now button
+          GestureDetector(
+            onTap: (){
+
+            },
+
+            child: Container(
+            
+            width: 130, 
+            height: 50,
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey.shade900,
+            ),
+
+            child: const Center(
+              child: Text(
+                "Pay Now",
+                style: TextStyle(
+                  fontSize: 22,fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            
+            ),
+          ),
+
+          
+            ],
+          ),
         ),
 
         

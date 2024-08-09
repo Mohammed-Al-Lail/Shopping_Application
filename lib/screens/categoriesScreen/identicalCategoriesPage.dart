@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/classes/categories.dart';
 import 'package:shoping_center_project/utilities/commonUtilites/MyProductsGridview.dart';
 
 class identicalCategoriesPage extends StatelessWidget {
-  const identicalCategoriesPage({
+
+  const identicalCategoriesPage({ // constructor
     
     super.key,
     required this.categorie
@@ -40,7 +40,7 @@ class identicalCategoriesPage extends StatelessWidget {
                 
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const BottomApparPage()));
+                        Navigator.pop(context); // close the page 
                       },
                       child: Container(
                         width: 50,
@@ -65,7 +65,7 @@ class identicalCategoriesPage extends StatelessWidget {
                       categorie.categoryTitle,
                       style: GoogleFonts.aboreto(
                         fontSize: 30,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],

@@ -19,7 +19,7 @@ class Product{
   final int price;
   final List<Color> itemColors ;
   final String discreption;
-  int quantity =0; // initial quantity for the product
+  int quantity =1; // initial quantity for the product
   bool isFav = false ; // this variable is to know if the product was selected to be favorite or not
 
 } // End of the class

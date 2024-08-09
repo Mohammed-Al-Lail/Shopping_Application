@@ -16,7 +16,7 @@ class AllCategories extends StatelessWidget {
       child: ListView.separated( //ListView.separated make a space between each item and another
         
         scrollDirection: Axis.horizontal,
-        itemCount: Categories.length,
+        itemCount: allCategoriesList.length,
       
         itemBuilder: (context , index){
       
@@ -30,10 +30,10 @@ class AllCategories extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   child: GestureDetector(
                     onTap: (){ // go to the identical category page depending on the category
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> identicalCategoriesPage(categorie: Categories[index])));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> identicalCategoriesPage(categorie: allCategoriesList[index])));
                     },
                     child: Image.asset(
-                      Categories[index].imagePath, // go to categorie class to understand
+                      allCategoriesList[index].imagePath, // go to categorie class to understand
                       fit: BoxFit.cover,
                       height: 70,
                       width: 70, 
@@ -45,7 +45,7 @@ class AllCategories extends StatelessWidget {
                 const SizedBox(height: 10,),
       
                 Text(
-                  Categories[index].categoryTitle, // go to categorie class to understand
+                  allCategoriesList[index].categoryTitle, // go to categorie class to understand
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight:  FontWeight.bold,
