@@ -1,24 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/utilities/shopingPageUtilites/shopingCartCard.dart';
 
-class ShopingPage extends StatelessWidget {
+class ShopingPage extends StatefulWidget {
   const ShopingPage({super.key});
 
+  @override
+  State<ShopingPage> createState() => _ShopingPageState();
+}
 
+class _ShopingPageState extends State<ShopingPage> {
   int totalShoppingPrice(){ // method to get the total price
     int totalPrice=0;
 
-    for(int i=0 ; i<shoppingCartProductsList.length ; i++){
-      totalPrice+=(shoppingCartProductsList[i].price * shoppingCartProductsList[i].quantity);
+    for(Product product in shoppingCartProductsList){
+      totalPrice+=(product.price * product.quantity);
     }
     return totalPrice;
   }
-
 
   @override
   Widget build(BuildContext context) {

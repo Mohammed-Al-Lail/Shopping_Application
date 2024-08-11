@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,20 +17,25 @@ class MyAppar extends StatelessWidget {
       
         children: [
       
-          Container(
-            width: 50,
-            height: 50,
-      
-            decoration: const BoxDecoration(
-      
-              color: Colors.deepPurple,
-              shape: BoxShape.circle,
-            ),
-                
-            child: const Icon(
-              Icons.menu,
-              size: 35,
-              color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              Scaffold.of(context).openDrawer(); // this is how to open the drawer
+            },
+            child: Container(
+              width: 50,
+              height: 50,
+                  
+              decoration: const BoxDecoration(
+                  
+                color: Colors.deepPurple,
+                shape: BoxShape.circle,
+              ),
+                  
+              child: const Icon(
+                Icons.menu,
+                size: 35,
+                color: Colors.white,
+              ),
             ),
           ),
       

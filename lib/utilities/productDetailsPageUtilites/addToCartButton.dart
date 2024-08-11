@@ -51,7 +51,7 @@ class _addTOCartButtonState extends State<addTOCartButton> {
         context: context,
          builder: (ctx) {
 
-          Future.delayed(const Duration(seconds: 3), () { // Close the dialog after 3 seconds
+          Future.delayed(const Duration(seconds: 1), () { // Close the dialog after 1 seconds
               Navigator.of(context).pop();
             }
             );
@@ -72,7 +72,7 @@ class _addTOCartButtonState extends State<addTOCartButton> {
         context: context,
          builder: (ctx) {
 
-          Future.delayed(const Duration(seconds: 3), () { // Close the dialog after 3 seconds
+          Future.delayed(const Duration(seconds: 1), () { // Close the dialog after  seconds
               Navigator.of(context).pop();
             }
             );

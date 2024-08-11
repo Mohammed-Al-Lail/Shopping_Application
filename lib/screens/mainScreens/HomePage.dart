@@ -4,6 +4,7 @@ import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/AdvSlider.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/AllCategories.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/MyAppar.dart';
+import 'package:shoping_center_project/utilities/HomePageutilites/homePageDrawer.dart';
 import 'package:shoping_center_project/utilities/commonUtilites/MyProductsGridview.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/MySearchBar.dart';
 
@@ -18,6 +19,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
 
       backgroundColor: Colors.deepPurple[100],
+      
+      drawer: const homePageDrawer(),
+
       
       body:  SafeArea(
 

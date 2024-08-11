@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoping_center_project/screens/mainScreens/FavoritePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/HomePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/ShoppingPage.dart';
+import 'package:shoping_center_project/screens/mainScreens/profilePage.dart';
+import 'package:shoping_center_project/classes/Person.dart';
 
 class BottomApparPage extends StatefulWidget {
   const BottomApparPage({super.key});
@@ -18,7 +20,7 @@ List <Widget> screensList = [
   const FavoritePage(),
   const HomePage(),
   const ShopingPage(),
-  Scaffold()
+  profilePage(person: personsList[0],),
 ];
 
 

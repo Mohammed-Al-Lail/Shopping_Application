@@ -22,7 +22,7 @@ class productDetailPage extends StatefulWidget {
 
 class _productDetailPageState extends State<productDetailPage> {
  
-      int colorIndex=0 ; // will be used to choose the product color
+      int colorIndex=0 ; 
 
   @override
   Widget build(BuildContext context) {
@@ -101,20 +101,20 @@ class _productDetailPageState extends State<productDetailPage> {
                        (index) => GestureDetector(
                         onTap: () {
                           setState(() {
-                            colorIndex=index ; // change the value of color index
+                            widget.product.indexOfChoosenColor=index ; // change the value of color index
                           });
                         },
                          child: Container( // return container as (index) times
-                          width: index == colorIndex ? 50 : 35,
-                          height: index == colorIndex ? 50 : 35,
+                          width: index == widget.product.indexOfChoosenColor ? 50 : 35,
+                          height: index == widget.product.indexOfChoosenColor ? 50 : 35,
                           margin: const EdgeInsets.only(left: 5),
                           decoration: BoxDecoration(
                             color: widget.product.itemColors[index],
                             shape: BoxShape.circle,
                          
                             border: Border.all(
-                              color: index == colorIndex ? Colors.black : Colors.transparent ,
-                              width: index == colorIndex ? 4 : 0,
+                              color: index == widget.product.indexOfChoosenColor ? Colors.black : Colors.transparent ,
+                              width: index == widget.product.indexOfChoosenColor ? 4 : 0,
                             ),
                           ),
                          ),

@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_center_project/classes/Product.dart';
 
-class Product{
+class productProvider extends ChangeNotifier{
 
 
-  Product({ // constrouctor
+  productProvider(){ // constructor
 
-    required this.title,
-    required this.imagePath,
-    required this.price,
-    required this.itemColors,
-    required this.discreption,
+
+  }
+
+
+
+
+
+
+
+ tagleFavorite(Product product){ // This method is to toggle the isFav statues for the product
+
     
-  });
+      product.isFav = ! product.isFav; // revers the statues when clickin on the favorite container
+    
 
- // variables of the class
-  final String title;
-  final String imagePath;
-  final int price;
-  final List<Color> itemColors ;
-  final String discreption;
-  int indexOfChoosenColor = 0;
-  int quantity =1; // initial quantity for the product
-  bool isFav = false ; // this variable is to know if the product was selected to be favorite or not
+    if(  product.isFav && !favoriteProductsList.contains(product) ){ // if the product was favorite and does not exist already on the favorite list
 
-} // End of the class
+      favoriteProductsList.add(product); // add the product to the favorite List
+    }
+    else {
+      favoriteProductsList.remove(product); // remove the product from the favorite list
+    }
+
+    notifyListeners();
+
+  } // End of the method
 
 
 
+  
 
 // List of the suggested products (from diffrent categories)
 List <Product> suggestedProductsList = [
@@ -134,3 +143,8 @@ List<Product> favoriteProductsList = []; // we will add to this list the favorit
 
 // This List will have the products exist on the shopping cart
 List<Product> shoppingCartProductsList = [];
+
+
+
+
+} // End of the class

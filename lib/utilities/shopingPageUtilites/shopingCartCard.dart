@@ -80,6 +80,35 @@ class shoppingCartCard extends StatelessWidget {
             ),
       
             const SizedBox(height: 10,),
+
+            // for the choosen color
+             Row(
+
+              children: [
+
+                 const Text(
+                  "Color: ",
+                  style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+                 ),
+
+                 const SizedBox(width: 2,),
+                
+                 Container(
+                  width: 23,
+                  height:23,
+
+                  decoration: BoxDecoration(
+                    color: product.itemColors[product.indexOfChoosenColor],
+                    shape: BoxShape.circle
+                  ),
+
+
+                 ),
+              ],
+            ),
       
             Text(
               "Price: \$${product.price} SAR",
