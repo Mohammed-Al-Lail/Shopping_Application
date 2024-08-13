@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/utilities/productDetailsPageUtilites/addToCartButton.dart';
 import 'package:shoping_center_project/utilities/productDetailsPageUtilites/productDescreption.dart';
@@ -41,13 +42,16 @@ class _productDetailPageState extends State<productDetailPage> {
             const SizedBox(height: 10,),
 
             // for product image
-            Image.asset(
-
-              widget.product.imagePath,
-              height: 250,
-              width: 450,
-
-              ),
+            Hero( // Hero widget to do animation between the pages by using the (tag) if it was identical between two heroes
+              tag: widget.product.imagePath, //The identifier for this particular hero. If the tag of this hero matches the tag of a hero on a [PageRoute] that we're navigating to or from, then a hero animation will be triggered.
+              child: Image.asset(
+              
+                widget.product.imagePath,
+                height: 250,
+                width: 450,
+              
+                ),
+            ),
               const SizedBox(height: 20,),
 
               // for Descreption text

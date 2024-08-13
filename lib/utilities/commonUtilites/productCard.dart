@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/screens/productdetailsscreen/productDetailsPage.dart';
 
@@ -97,11 +98,14 @@ class _productCardState extends State<productCard> {
             ), // End of small favorite container
         
         
-            Image.asset(
-              widget.product.imagePath,
-              width: 250,
-              height: 230,
-              //fit: BoxFit.cover,
+            Hero( // Hero widget to do animation between the pages by using the (tag) if it was identical between two heroes
+              tag:widget.product.imagePath , //The identifier for this particular hero. If the tag of this hero matches the tag of a hero on a [PageRoute] that we're navigating to or from, then a hero animation will be triggered.
+              child: Image.asset(
+                widget.product.imagePath,
+                width: 250,
+                height: 230,
+                //fit: BoxFit.cover,
+              ),
             ),
         
         

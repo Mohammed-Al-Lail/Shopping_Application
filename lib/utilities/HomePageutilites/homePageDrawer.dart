@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Person.dart';
-import 'package:shoping_center_project/screens/LoginScreen/logIn.dart';
+import 'package:shoping_center_project/screens/LoginScreens/logIn.dart';
 import 'package:shoping_center_project/screens/mainScreens/profilePage.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/myListTail.dart';
 
@@ -63,7 +63,7 @@ class homePageDrawer extends StatelessWidget {
                 text: "log out",
                  icon: Icons.logout,
                  funnction: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=> const logInPage()));
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>  logInPage()));
                  },
                 )
       
