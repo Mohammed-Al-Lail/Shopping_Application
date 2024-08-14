@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoping_center_project/screens/mainScreens/FavoritePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/HomePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/ShoppingPage.dart';
+import 'package:shoping_center_project/screens/mainScreens/UsersPage.dart';
 import 'package:shoping_center_project/screens/mainScreens/profilePage.dart';
 import 'package:shoping_center_project/classes/Person.dart';
 
@@ -16,7 +17,7 @@ class _BottomApparState extends State<BottomApparPage> {
 
 int _pageIndex= 2 ; // the defult page ( at the begining the defult page will be the home page)
 List <Widget> screensList = [
-  Scaffold(),
+  const usersPage(),
   const FavoritePage(),
   const HomePage(),
   const ShopingPage(),
@@ -82,7 +83,7 @@ List <Widget> screensList = [
 
                icon:  Icon(
 
-              Icons.grid_view_outlined,
+              Icons.people_alt_outlined,
               color: _pageIndex==0 ? Colors.red[200] : Colors.grey.shade200,
               size: 30,
 

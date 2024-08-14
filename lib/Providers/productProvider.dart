@@ -4,13 +4,7 @@ import 'package:shoping_center_project/classes/Product.dart';
 class productProvider extends ChangeNotifier{
 
 
-  productProvider(){ // constructor
-
-
-  }
-
-
-
+  
 
 
 

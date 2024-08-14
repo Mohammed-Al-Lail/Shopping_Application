@@ -4,10 +4,10 @@ Person({ // constructor
 
 required this.firstName,
 required this.lastName,
-required this.age,
 required this.email,
 required this.passowrd,
 this.major="", // defult values , it is not necessary to provied value for them initialy , but we can change them later
+this.age,
 this.profileImagePath="", 
 this.descreption="",
 this.githupUrl=""
@@ -18,7 +18,7 @@ this.githupUrl=""
 
 final String firstName;
 final String lastName;
-final int age;
+final dynamic age;
 final String email;
 final String passowrd; 
 final String major;
@@ -58,6 +58,7 @@ Map <String , Person> personMap = {
 
     "Email1@gmail.com": Person(firstName: "Ali", lastName: "Hussain", age: 57, passowrd: "Passowrd1",email:"Email1@gmail.com" , major: "Cs"),
     "Email2@gmail.comm": Person(firstName: "Qassem", lastName: "Salem", age: 17, passowrd: "Passowrd2",email: "Email2@gmail.com", major: "SWE"),
+    "alalmoh3404@gmail.com": Person(firstName: "Qassem", lastName: "Salem", age: 17, passowrd: "Passowrd2",email: "Email3@gmail.com", major: "SWE"),
 
 };
 

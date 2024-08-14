@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_center_project/BottomApparPage.dart';
+import 'package:shoping_center_project/classes/Person.dart';
 import 'package:shoping_center_project/screens/LoginScreens/signup.dart';
 import 'package:shoping_center_project/utilities/loginPageUtilites/TitleText.dart';
 import 'package:shoping_center_project/utilities/loginPageUtilites/logInTextField.dart';
@@ -7,20 +9,97 @@ import 'package:shoping_center_project/utilities/loginPageUtilites/myTextButton.
 import 'package:shoping_center_project/utilities/loginPageUtilites/personContainer.dart';
 
 // ignore: must_be_immutable
-class logInPage extends StatelessWidget {
-    logInPage({super.key});
+class logInPage extends StatefulWidget {
+    const logInPage({super.key});
 
+  @override
+  State<logInPage> createState() => _logInPageState();
+}
+
+class _logInPageState extends State<logInPage> {
   TextEditingController userNameController = TextEditingController() ;
+
   TextEditingController passowrdController = TextEditingController() ;
 
-
   // function for LOGIN Button
-   loginMethod(){}
+   loginButton(){
 
+// check if the email was exist on the system
+    if(personMap.keys.contains(userNameController.text)){ 
+
+// check if the passowrd of the same email was correct
+
+  if(personMap[userNameController.text]!.passowrd == passowrdController.text){
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "Sign in Successfully",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.green.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+      
+      // we will wate for 3 seconds befor going to the next page
+      Future.delayed(
+        const Duration(seconds: 3), 
+        () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const BottomApparPage())),
+        );
+      
+
+         return; // go out the method ( if email + passowrd were correct)
     
-  
+        }
 
 
+    }
+
+    // if the information were incorrect
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "Incorrect information",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.red.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+    
+
+
+
+
+
+   } // End of the method
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +120,8 @@ class logInPage extends StatelessWidget {
         ),
 
         centerTitle: true,
+        automaticallyImplyLeading: false, 
+        
       ),
 
 
@@ -98,7 +179,7 @@ class logInPage extends StatelessWidget {
              const SizedBox(height: 10,),
         
              // log in Button
-             logInButton(buttonText:"LOGIN",function: loginMethod ),
+             logInButton(buttonText:"LOGIN",function: loginButton ),
               
              const SizedBox(height: 10,),
              

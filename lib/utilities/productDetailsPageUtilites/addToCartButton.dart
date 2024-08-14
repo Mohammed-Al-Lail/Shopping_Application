@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shoping_center_project/classes/Product.dart';
-import 'package:shoping_center_project/utilities/productDetailsPageUtilites/massegeDialog.dart';
+
 
 class addTOCartButton extends StatefulWidget {
 
@@ -41,49 +40,67 @@ class _addTOCartButtonState extends State<addTOCartButton> {
   }
 
 
-  void addToSoppingCart(){ // method to handle adding new product button
+// method to handle adding new product button
+  void addToSoppingCart(){ 
 
     if( !shoppingCartProductsList.contains(widget.product)){
 
       shoppingCartProductsList.add(widget.product);
 
-      showDialog( // show message show the sucsess of adding new product
-        context: context,
-         builder: (ctx) {
+      // show snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
 
-          Future.delayed(const Duration(seconds: 1), () { // Close the dialog after 1 seconds
-              Navigator.of(context).pop();
-            }
-            );
+                   SnackBar(
+                  content: const SizedBox(
+                    height: 30,
 
-           return massegDialog(
-            text: "added Successfully ! ",
-             backgroundColor: Colors.green.shade300,
-             );
-         },
+                    child: Center(
+                      
+                      child: Text(
+                        "added successfuly",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white
+                        ),
+                        ),
+                    ),
+                  ),
 
-         ); // end of show dialog
-
-    } // end of the first if(the product was added successfully)
+                    backgroundColor: Colors.green.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+                  ),
+                  );
+                }
 
     else{
 
-      showDialog( // show message show the sucsess of adding new product
-        context: context,
-         builder: (ctx) {
+      // show snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
 
-          Future.delayed(const Duration(seconds: 1), () { // Close the dialog after  seconds
-              Navigator.of(context).pop();
-            }
-            );
+                   SnackBar(
+                  content: const SizedBox(
+                    height: 30,
 
-           return massegDialog(
-            text: "The product is on the Cart !! ",
-             backgroundColor: Colors.red.shade300,
-             );
-         },
+                    child: Center(
+                      
+                      child: Text(
+                        "The product Already on the cart !!",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white
+                        ),
+                        ),
+                    ),
+                  ),
 
-         ); // end of show dialog
+                    backgroundColor: Colors.red.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+                  ),
+                  );
 
 
     }
@@ -178,7 +195,7 @@ class _addTOCartButtonState extends State<addTOCartButton> {
             // add to cart button
              GestureDetector(
               onTap: addToSoppingCart,
-
+            
                child: Container(
                
                 height: 45,

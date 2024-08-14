@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:shoping_center_project/BottomApparPage.dart';
+import 'package:shoping_center_project/classes/Person.dart';
 import 'package:shoping_center_project/screens/LoginScreens/logIn.dart';
 import 'package:shoping_center_project/utilities/loginPageUtilites/TitleText.dart';
 import 'package:shoping_center_project/utilities/loginPageUtilites/logInTextField.dart';
@@ -7,14 +10,186 @@ import 'package:shoping_center_project/utilities/loginPageUtilites/myTextButton.
 import 'package:shoping_center_project/utilities/loginPageUtilites/personContainer.dart';
 
 // ignore: must_be_immutable
-class signUpPage extends StatelessWidget {
+class signUpPage extends StatefulWidget {
    signUpPage({super.key});
 
+  @override
+  State<signUpPage> createState() => _signUpPageState();
+}
+
+class _signUpPageState extends State<signUpPage> {
   TextEditingController firstNameController = TextEditingController() ;
+
   TextEditingController lastNameController = TextEditingController() ;
+
   TextEditingController emailController = TextEditingController() ;
+
   TextEditingController passowrdController = TextEditingController() ;
+
    TextEditingController passowrdConfirmationController = TextEditingController() ;
+
+// method for signup button
+    signUpButton(){
+
+      Person p =Person( // creat person object
+        firstName: firstNameController.text, 
+        lastName: lastNameController.text,  
+        email: emailController.text, 
+        passowrd: passowrdController.text
+        );
+
+
+// if the email was already exist on the system
+  if(personMap.keys.contains(p.email)){
+
+
+    // show snackbar if the email was exist
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "The email is already exist",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.red.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+      return; // go out the method
+
+  }
+
+// if there was missing information
+  else if ( 
+    p.firstName.isEmpty ||
+    p.lastName.isEmpty  ||
+    p.email.isEmpty ||
+    p.passowrd.isEmpty ||
+    passowrdConfirmationController.text.isEmpty 
+  )
+
+  {
+
+ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "Missing Information",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.red.shade900,
+                    duration: const Duration(seconds: 2),
+     
+             )
+      );
+
+   //return ; // go out the method
+  }
+  
+   
+
+// if The passowrds doesn't matchٍ
+  else if(passowrdController.text != passowrdConfirmationController.text){
+
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "The passowrds doesn't match",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.red.shade900,
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+        
+         
+    }
+
+            
+
+    else {  // if everything was correct
+
+    personsList.add( p ); // adding the person to the list
+    personMap[emailController.text]=p ; // adding the person to the map with the key person email
+
+   
+    // show snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "SignUp successfully",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.green.shade900,
+                    duration: const Duration(seconds: 2),
+     
+             )
+      );
+
+      // we will wait for 3 seconds befor going to the next page
+      Future.delayed(
+        const Duration(seconds: 3), 
+        () => Navigator.push(context, MaterialPageRoute(builder: (context)=> const BottomApparPage())),
+        );
+
+    }
+
+
+
+
+   }// End of method
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +208,7 @@ class signUpPage extends StatelessWidget {
         ),
 
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
 
       body: SingleChildScrollView(
@@ -90,7 +266,7 @@ class signUpPage extends StatelessWidget {
             // for Passowrd
             const TitleText("passowrd"),
             logInTextField(
-              controller: lastNameController,
+              controller: passowrdController,
                hintText: "Passowrd",
                obscureText: true,
                ),
@@ -104,7 +280,8 @@ class signUpPage extends StatelessWidget {
                ),
 
                // sign up Button
-             logInButton(buttonText:"SIGNUP",function: (){}),
+             logInButton(buttonText:"SIGNUP",function: signUpButton ),
+
              const SizedBox(height: 10,),
 
              // for Already have account? sign in Text
