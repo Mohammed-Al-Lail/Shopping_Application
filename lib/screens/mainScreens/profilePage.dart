@@ -94,7 +94,7 @@ class profilePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
           
                           child: Image.asset(
-                            person.profileImagePath,
+                            person.profileImagePath=="" ? "lib/images/person_Icon.jpg" : person.profileImagePath,
                             fit: BoxFit.fill,
                             
                                               
@@ -203,6 +203,23 @@ class profilePage extends StatelessWidget {
           
                 // for the person descreption
                   profileDescreption(person.descreption),
+
+                  // Edit Button
+                  FloatingActionButton(
+
+                    backgroundColor: Colors.deepPurple,
+                    elevation: 15,
+                    splashColor: Colors.deepPurple[300],
+                     onPressed: (){},
+                    child: const Text(
+                      "Edit",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white
+                      ),
+                    ),
+                    ),
+
                
           
                 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoping_center_project/classes/Person.dart';
+import 'package:shoping_center_project/screens/mainScreens/profilePage.dart';
 
 class userCard extends StatelessWidget {
   const userCard({
@@ -80,7 +81,9 @@ class userCard extends StatelessWidget {
 
           // arrow (icon)
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> profilePage(person: person)));
+            },
             icon: const Icon(
               Icons.arrow_forward_ios_outlined,
               size: 25,

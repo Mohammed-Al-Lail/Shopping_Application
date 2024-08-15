@@ -7,7 +7,7 @@ required this.lastName,
 required this.email,
 required this.passowrd,
 this.major="", // defult values , it is not necessary to provied value for them initialy , but we can change them later
-this.age,
+this.age="",
 this.profileImagePath="", 
 this.descreption="",
 this.githupUrl=""
@@ -53,7 +53,7 @@ List<Person> personsList = [
 ];
 
 
-// This maP will be used when the user sign up or sign in and we will get the information of the person from here 
+// This map will be used when the user sign up or signin and we will get the information of the person from here 
 Map <String , Person> personMap = {
 
     "Email1@gmail.com": Person(firstName: "Ali", lastName: "Hussain", age: 57, passowrd: "Passowrd1",email:"Email1@gmail.com" , major: "Cs"),
