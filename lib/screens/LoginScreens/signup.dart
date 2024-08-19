@@ -289,7 +289,7 @@ ScaffoldMessenger.of(context).showSnackBar(
               message: "Already have account?",
               textButtonMessage: "sign in",
               function: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> logInPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const logInPage()));
               },
              ),
 

@@ -41,7 +41,7 @@ class userCard extends StatelessWidget {
             topRight: Radius.circular(16)
             ),
             child: Image.asset(
-              person.profileImagePath =="" ? "lib/images/person_Icon.jpg":person.profileImagePath,
+              person.profileImagePath ?? "lib/images/person_Icon.jpg", // "lib/images/person_Icon.jpg" {is the defult value will appear if (person.profileImagePath) = null }
                width: 110,
                height: 120,
               fit: BoxFit.cover,

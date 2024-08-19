@@ -12,7 +12,7 @@ class usersPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-      
+      backgroundColor: Colors.deepPurple[50],
         body: Column(
       
           children: [

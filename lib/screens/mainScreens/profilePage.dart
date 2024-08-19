@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/classes/Person.dart';
+import 'package:shoping_center_project/screens/EditScreen/EditScreen.dart';
 import 'package:shoping_center_project/utilities/profilePageUtilites/profileDescreption.dart';
 import 'package:shoping_center_project/utilities/profilePageUtilites/profilePageinfo.dart';
 
@@ -21,8 +22,28 @@ class profilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      backgroundColor: Colors.deepPurple[50],
+
+      //Floating Action Button (Edit button)
+      floatingActionButton: FloatingActionButton(
+                  backgroundColor: Colors.deepPurple,
+                  elevation: 15,
+                  splashColor: Colors.deepPurple[300],
+                   onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> EditScreen(person: person,)));
+                   },
+                  child: const Text(
+                    "Edit",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white
+                    ),
+                  ),
+              ),
+              
       
 
+    // body of scaffold
       body: SafeArea(
 
         child: SingleChildScrollView(
@@ -94,7 +115,7 @@ class profilePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
           
                           child: Image.asset(
-                            person.profileImagePath=="" ? "lib/images/person_Icon.jpg" : person.profileImagePath,
+                            person.profileImagePath ?? "lib/images/person_Icon.jpg" , // If you're not sure that the String? value can be safely cast to a String, you should use a null-aware operator or a conditional statement  String nonNullableString = nullableString?.toString() ?? 'Default value'; 
                             fit: BoxFit.fill,
                             
                                               
@@ -162,11 +183,11 @@ class profilePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
                           // for the person major
-                          profilePageinfo(infoTitle: "Major:", info: person.major),
+                          profilePageinfo(infoTitle: "Major:", info: person.major ?? ""), // If you're not sure that the String? value can be safely cast to a String, you should use a null-aware operator or a conditional statement => String nonNullableString = nullableString?.toString() ?? 'Default value'; 
                           const SizedBox(height: 10,),
           
                           // for git hub url
-                            profilePageinfo(infoTitle: "Git hub:", info: person.githupUrl),
+                            profilePageinfo(infoTitle: "Git hub:", info: person.githupUrl ?? ""), // If you're not sure that the String? value can be safely cast to a String, you should use a null-aware operator or a conditional statement => String nonNullableString = nullableString?.toString() ?? 'Default value'; 
                             const SizedBox(height: 10,),
                           //for the person Email
                            profilePageinfo(infoTitle: "Email:", info: person.email),
@@ -202,24 +223,14 @@ class profilePage extends StatelessWidget {
                 ),
           
                 // for the person descreption
-                  profileDescreption(person.descreption),
+                //profileDescreption(person.descreption ?? ""),  // If you're not sure that the String? value can be safely cast to a String, you should use a null-aware operator or a conditional statement => String nonNullableString = nullableString?.toString() ?? 'Default value'; 
 
-                  // Edit Button
-                  FloatingActionButton(
+                  
+                  
 
-                    backgroundColor: Colors.deepPurple,
-                    elevation: 15,
-                    splashColor: Colors.deepPurple[300],
-                     onPressed: (){},
-                    child: const Text(
-                      "Edit",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white
-                      ),
-                    ),
-                    ),
+                    
 
+                  
                
           
                 
@@ -229,6 +240,9 @@ class profilePage extends StatelessWidget {
         )
         
         ),
+
+        
+       
     );
   }
 }

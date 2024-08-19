@@ -6,11 +6,11 @@ required this.firstName,
 required this.lastName,
 required this.email,
 required this.passowrd,
-this.major="", // defult values , it is not necessary to provied value for them initialy , but we can change them later
-this.age="",
-this.profileImagePath="", 
-this.descreption="",
-this.githupUrl=""
+this.major, // defult values , it is not necessary to provied value for them initialy , but we can change them later
+this.age,
+this.profileImagePath, 
+this.descreption,
+this.githupUrl,
 
 
 });
@@ -18,13 +18,13 @@ this.githupUrl=""
 
 final String firstName;
 final String lastName;
-final dynamic age;
+dynamic age;
 final String email;
 final String passowrd; 
-final String major;
-final String descreption; 
-final String profileImagePath;
-final String githupUrl; 
+String? major; // the meaning of ( ? ) is that the value could be null
+String? descreption; 
+String? profileImagePath;
+String? githupUrl; 
 
 
 }
