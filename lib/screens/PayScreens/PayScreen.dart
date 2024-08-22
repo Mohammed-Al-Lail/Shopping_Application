@@ -1,19 +1,131 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoping_center_project/classes/Product.dart';
+import 'package:shoping_center_project/utilities/loginPageUtilites/loginButton.dart';
 
-class PayScreen extends StatelessWidget {
+class PayScreen extends StatefulWidget {
    PayScreen({super.key});
 
+  @override
+  State<PayScreen> createState() => _PayScreenState();
+}
+
+class _PayScreenState extends State<PayScreen> {
+
 final _formKey = GlobalKey(); // we will use it within the form widget
+ 
+final TextEditingController _cardNumController = TextEditingController();
+
+final TextEditingController _cardCvvController = TextEditingController();
+
+final List yearsList = [25,26,27,28,29,30,31,32];
+
+final List monthsList = [01,02,03,04,05,06,07,08,09,10,11,12];
+
+ String ExpiryMonth= "" ;
+
+ String Expiryyear= "" ;
+
+
+ // method to check card information validity
+
+    bool isValid(){
+
+      if( // The valid conditions
+        _cardNumController.text.isEmpty || _cardCvvController.text.isEmpty ||
+         ExpiryMonth =="" || Expiryyear=="" ||_cardNumController.text.length<12||
+          _cardCvvController.text.length<3
+         ){
+        return false;
+      }
+      return true;
+    }
+ // method for save Button 
+
+ void saveButtonMethod(){
+
+
+    
+    if(isValid()){
+      
+         shoppingCartProductsList.clear(); // clear the items from shopping page
+
+         ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "You paied Successfully",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.black.withOpacity(0.7),
+
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+
+      Future.delayed( // close the page after 4 seconds
+        const Duration(seconds: 4),
+        ()=>Navigator.pop(context),
+      );
+
+
+    }
+
+    else {
+
+       ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:  const SizedBox(
+              height: 30,
+
+              child: Center(
+                      
+                child: Text(
+                    "incompleted Information",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+
+                    backgroundColor: Colors.red.withOpacity(0.9),
+
+                    duration: const Duration(seconds: 2),
+                    
+             )
+      );
+    }
+  
+ }
+
+
+
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+
+      backgroundColor: Colors.grey.shade200,
       
       appBar: AppBar(
-
+        backgroundColor: Colors.grey.shade200,
         title:Text(
                 "Card information",
                 style: GoogleFonts.aclonica(
@@ -29,59 +141,262 @@ final _formKey = GlobalKey(); // we will use it within the form widget
 
       body: SafeArea(
 
-        child: Column(
-        
-          children: [
-            
-              const SizedBox(height: 10,),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
 
-            // credit card
-              CreditCardWidget( // using flutter_credit_card Package
+          child: Column(
+          
+            children: [
+              
+                const SizedBox(height: 10,),
+          
+              // credit card
+                CreditCardWidget( // using flutter_credit_card Package
+          
+                // required arguments
+                  cardNumber: _cardNumController.text.toString(), 
+                  expiryDate: " $ExpiryMonth/$Expiryyear", 
+                  cardHolderName: "Mohammed Al Lail", 
+                  cvvCode: _cardCvvController.text.toString(), 
+                  showBackView: false, 
+                  onCreditCardWidgetChange: (CreditCardBrand brand){},
+          
+                // optional Arguments
+                  cardBgColor: Colors.black,
+                  bankName: "AL-Lail Bank",
+                  isHolderNameVisible: true, // holder name
+                  labelValidThru: "Expiry Date:",
+                  obscureInitialCardNumber: true, // is the first numbers secure?
+                  obscureCardCvv: false, // Cvv
+                  cardType: CardType.mastercard, // card type
+                  isSwipeGestureEnabled: true, // enable flipping the card
+                  chipColor: Colors.yellow.shade300, // chip color
+          
+                  ),
+          
+                  
+          
+                  Divider(color: Colors.grey.shade700, thickness: 2,),
+                  const SizedBox(height: 20,),
 
-              // required arguments
-                cardNumber: "123456789111728278", 
-                expiryDate: "12/28", 
-                cardHolderName: "Mohammed Al Lail", 
-                cvvCode: "123", 
-                showBackView: false, 
-                onCreditCardWidgetChange: (CreditCardBrand brand){},
+                 //Form widget => to get the card info
+                  Form(
+                  key: _formKey,
 
-              // optional Arguments
-                cardBgColor: Colors.black,
-                bankName: "AL-Lail Bank",
-                isHolderNameVisible: true,
-                labelValidThru: "Expiry Date:",
-                obscureInitialCardNumber: true,
-                obscureCardCvv: true,
-                cardType: CardType.mastercard,
-                isSwipeGestureEnabled: true, // enable flipping the card
-                chipColor: Colors.yellow.shade300,
+                  child:  Column(
+          
+                    children: [
 
-                ),
+                      // card Number (Text)
+                        const Center(
+                           child: Text(
+                            "Card Number",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                            ),
+                            ),
+                         ),
+                         const SizedBox(height: 5,),
+          
+                      // text form field (card number)
+                         Padding(
+                           padding: const EdgeInsets.only(left:8 , right: 8),
+          
+                           child: TextFormField(
+                            controller: _cardNumController,
+                            onChanged: (value) {
+                              setState(() {  }); // updating the state after each change
+                            },
+                               keyboardType: TextInputType.number,
+                               textAlign: TextAlign.center,
+                               maxLength: 12,
+                               
+                               decoration: InputDecoration(
+                               
+                                enabledBorder: OutlineInputBorder(
+          
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:  BorderSide(
+                                    color: _cardNumController.text.length ==12 ? Colors.grey.shade600 :Colors.red.shade800,
+                                    width: 2
+                                  )
+                                ),
+          
+                                focusedBorder: OutlineInputBorder(
+          
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:  BorderSide(
+                                    color: _cardNumController.text.length ==12 ? Colors.grey.shade600 :Colors.red.shade800,
+                                    width: 4
+                                  )
+                                ), 
+                                
+          
+                                label: const Text("Card Number",),
+          
+                                labelStyle: TextStyle( fontSize: 18, color: Colors.grey.shade600)
+                           
+                                ),
+                                
+                           ),
+                         ),
+          
+                         const SizedBox(height: 10,),
+                        
+                        // Expiry date (Text)
+                         const Center(
+                           child: Text(
+                            "Expiry Date",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                            ),
+                            ),
+                         ),
+                         
+                        const SizedBox(height: 5,),
+          
+                         
+                      //Drop Down button form field  (card Expiry date) , two dropDonButton
+          
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                const SizedBox(height: 20,),
+                          children: [
 
-               //Form widget => to get the card info
-                Form(
-                key: _formKey,
-                child: const Column(
+                           // for Month
+                            SizedBox(
+                              height: 80,
+                              width: 100,
+                              child: DropdownButtonFormField(
+                                items: monthsList.map((e) => DropdownMenuItem(child: Text("$e") , value: e,)).toList(), 
+                                onChanged: (val){
+                                  setState(() {
+                                    ExpiryMonth = val.toString();
+                                  });
+                                },
+                                hint: const Text("Month",),
+                                decoration: InputDecoration(
+                                  enabled: true,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: ExpiryMonth=="" ? Colors.red.shade800 : Colors.grey,
+                                      width: 3
+                                    )
+                                  )
+                                ),
+                                ),
+          
+                            ),
+          
+                        //for year
+                          SizedBox(
+                              height: 80,
+                              width: 100,
+                              child: DropdownButtonFormField(
+                                items: yearsList.map((e) => DropdownMenuItem(child: Text("$e") , value: e,)).toList(), 
+                                onChanged: (val){
+                                  setState(() {
+                                    Expiryyear = val.toString();
+                                  });
+                                },
+                                hint: const Text("year",),
+                                decoration: InputDecoration(
+                                  enabled: true,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Expiryyear=="" ? Colors.red.shade800 : Colors.grey,
+                                      width: 3
+                                    )
+                                  )
+                                ),
+                                ),
+          
+                            ),
+                            
+                          ],
+                        ),
 
-                  children: [
+                      // Cvv (Text)
+                        const Center(
+                           child: Text(
+                            "Cvv",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                            ),
+                            ),
+                         ),
+                         const SizedBox(height: 5,),
 
-                    // text field (card number)
+          
+                      //text form field (cvv)
+                        SizedBox(
+                         width: 180,
 
-                    //text field (card Expiry date)
+                          child: TextFormField(
+                            controller: _cardCvvController,
+                            onChanged: (value) {
+                              setState(() {}); // updating the state after each change
+                            },
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              maxLength: 3,
+                              
+                              decoration: InputDecoration(
+                              
+                               enabledBorder: OutlineInputBorder(
+                                    
+                                 borderRadius: BorderRadius.circular(10),
+                                 borderSide:  BorderSide(
+                                   color: _cardCvvController.text.length ==3 ? Colors.grey.shade600 :Colors.red.shade800,
+                                   width: 2
+                                 )
+                               ),
+                                    
+                               focusedBorder: OutlineInputBorder(
+                                    
+                                 borderRadius: BorderRadius.circular(10),
+                                 borderSide:  BorderSide(
+                                   color: _cardCvvController.text.length ==3 ? Colors.grey.shade600 :Colors.red.shade800,
+                                   width: 4
+                                 )
+                               ), 
+                               
+                                    
+                               label: const Text("Cvv",),
+                                    
+                               labelStyle: TextStyle( fontSize: 18, color: Colors.grey.shade600)
+                          
+                               ),
+                              
+                          ),
+                        ),
+                    ],
+          
+          
+                  ),
+                  
+                  ), //End of the form
 
-                    //text field (cvv)
-                  ],
 
-
-                ),
-                
-                )
-                
-
-          ],
+                  
+                 
+                 Divider(color: Colors.grey.shade700, thickness: 2,),
+                  const SizedBox(height: 20,),
+              
+               // Save button
+                 logInButton(
+                  buttonText: "Pay", 
+                  function: saveButtonMethod , 
+                  buttonColor: Colors.black,borderColor: 
+                  Colors.yellow.shade700,
+                  )
+                  
+          
+            ],
+          ),
         ),
       ),
     );

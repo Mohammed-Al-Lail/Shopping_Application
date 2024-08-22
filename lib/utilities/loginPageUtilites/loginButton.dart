@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class logInButton extends StatelessWidget {
-  const logInButton({
+    logInButton({
     
     super.key,
     required this.buttonText,
-    required this.function
+    required this.function,
+    this.buttonColor = Colors.deepPurple, // defult value
+    this.borderColor = Colors.transparent // defult value (the color will be as same as defult button color)
+    
     
     });
 
     final String buttonText;
     final Function()? function;
+    Color? buttonColor; // the color could be null and we will assign to it a defult value
+    Color borderColor; // the color could be null and we will assign to it a defult value
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +29,13 @@ class logInButton extends StatelessWidget {
               margin: const EdgeInsets.all(5),
              
               decoration: BoxDecoration(
-                color: Colors.deepPurple,
+                color: buttonColor,
                 borderRadius: BorderRadius.circular(15),
+
+                border: Border.all( // the user can add color to the borders (optional)
+                  color: borderColor,
+                  width: 3,
+                )
               ),
               
              
