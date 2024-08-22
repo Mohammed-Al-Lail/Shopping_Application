@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/classes/Product.dart';
+import 'package:shoping_center_project/utilities/shopingPageUtilites/TotalPriceContainer.dart';
 import 'package:shoping_center_project/utilities/shopingPageUtilites/shopingCartCard.dart';
 
 class ShopingPage extends StatefulWidget {
@@ -12,14 +13,7 @@ class ShopingPage extends StatefulWidget {
 }
 
 class _ShopingPageState extends State<ShopingPage> {
-  int totalShoppingPrice(){ // method to get the total price
-    int totalPrice=0;
 
-    for(Product product in shoppingCartProductsList){
-      totalPrice+=(product.price * product.quantity);
-    }
-    return totalPrice;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +77,10 @@ class _ShopingPageState extends State<ShopingPage> {
                     
         ),
       ],
-    )  :   
+    )     
     
-    
+    :  // The second option....
+
     Column( // if the list was not empty
 
       children: [
@@ -108,61 +103,9 @@ class _ShopingPageState extends State<ShopingPage> {
 
        const SizedBox(height: 20,),
 
-        Container(
-        
-          width: double.infinity,
-          height: 78,
-          color: Colors.green.shade800,
-        
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
 
-             const SizedBox(width: 1,),
-              Text(
-            "Total Price: \$${ totalShoppingPrice()} SAR",
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w900,
-              color: Colors.white
-            ),
-          ) ,
-
-          // for Pay Now button
-          GestureDetector(
-            onTap: (){
-
-            },
-
-            child: Container(
-            
-            width: 130, 
-            height: 50,
-
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.shade900,
-            ),
-
-            child: const Center(
-              child: Text(
-                "Pay Now",
-                style: TextStyle(
-                  fontSize: 22,fontWeight: FontWeight.w900,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            
-            ),
-          ),
-
-          
-            ],
-          ),
-        ),
+      // The Total price container
+        const TotalPriceContainer()
 
         
         

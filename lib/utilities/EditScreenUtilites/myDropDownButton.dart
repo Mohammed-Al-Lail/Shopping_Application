@@ -78,9 +78,8 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
                         value: widget.selectedValue, // thus is the value which will be displayed on the screen
                         
                         onChanged: widget.onChanged ,
-          
-                       
 
+                        // design
                           dropdownColor: Colors.red.shade100,
                           iconSize: 50,
                           menuMaxHeight: 400,

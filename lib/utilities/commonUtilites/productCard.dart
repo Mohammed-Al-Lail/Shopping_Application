@@ -60,17 +60,18 @@ class _productCardState extends State<productCard> {
                 Padding( // to use borderRadius parameter
                   padding: const EdgeInsets.only(top: 5 , right: 5),
         
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                  
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      color: Colors.pink.shade200,
-                      
-                      child:  AnimatedHeart(product: widget.product),
-                            
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    margin: const EdgeInsets.only(bottom: 3),
+                    decoration: BoxDecoration(
+                        color: Colors.pink.shade200,
+                        shape: BoxShape.circle
                     ),
+                    
+                    
+                    child:  AnimatedHeart(product: widget.product),
+                          
                   ),
                 ),
               ],

@@ -17,28 +17,28 @@ class profilePageinfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5,),
-                          child:  Text(
-                            infoTitle,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.grey.shade700
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10,),
-                     
-                        Text(
-                          info,
-                          style: GoogleFonts.abrilFatface(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                  );
+             children: [
+               Padding(
+                 padding: const EdgeInsets.only(left: 5,),
+                 child:  Text(
+                   infoTitle,
+                   style: TextStyle(
+                     fontSize: 20,
+                     fontWeight: FontWeight.w900,
+                     color: Colors.grey.shade700
+                   ),
+                 ),
+               ),
+               const SizedBox(width: 10,),
+            
+               Text(
+                 info,
+                 style: GoogleFonts.abrilFatface(
+                   fontSize: 25,
+                   fontWeight: FontWeight.w900,
+                 ),
+               ),
+             ],
+         );
   }
 }

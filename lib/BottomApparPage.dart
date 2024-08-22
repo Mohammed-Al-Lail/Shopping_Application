@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/screens/mainScreens/FavoritePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/HomePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/ShoppingPage.dart';
@@ -34,6 +36,7 @@ List <Widget> screensList = [
       
       body: screensList[_pageIndex], // we will move between the pages deppending on the index
 
+    // for Home icon
       floatingActionButton: FloatingActionButton(
         
         onPressed: (){
@@ -72,6 +75,7 @@ List <Widget> screensList = [
 
           children: [
 
+          // for people icon
             IconButton(
               onPressed: (){
 
@@ -91,6 +95,7 @@ List <Widget> screensList = [
                
                ),
 
+            // for heart icon
                IconButton(
               onPressed: (){
                 setState(() {
@@ -111,24 +116,63 @@ List <Widget> screensList = [
 
                 const SizedBox(width: 20,),
 
-               IconButton(
-              onPressed: (){
-                setState(() {
+              // for Shopping cart icon
+               Stack( // i used stack so we can place the childrens above each other
 
-                _pageIndex =3;
-            });
-              },
+                 children: [
 
-               icon:  Icon(
+                  IconButton( // shoppin cart 
+                   onPressed: (){
+                    setState(() {
+                   _pageIndex =3;
+                        });
+                             },
+                    icon:  Icon(
+                          Icons.shopping_cart_outlined,
+                          color: _pageIndex==3 ? Colors.red[200] : Colors.grey.shade200,
+                          size: 30,
+                 )
+                 
+                 ),
 
-              Icons.shopping_cart_outlined,
-              color: _pageIndex==3 ? Colors.red[200] : Colors.grey.shade200,
-              size: 30,
+                 Visibility( // using Visibility widget to hide the container that display the number of items on the shopping cart {if it was empty}
+                  visible: shoppingCartProductsList.isNotEmpty ? true : false, // if the list was not empty show the numer of items , else not
 
-               )
-               
+                   child: Positioned( // with Positioned widget we can controls where a child of a [Stack] is positioned.
+                    right: 1,
+                    
+                    
+                    child: Container( // the container which will have the number of items on the shopping cart
+                   
+                      width: 20,
+                      height: 20,
+                   
+                      decoration:  BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red.withOpacity(0.9)
+                      ),
+                   
+                      child: Center(
+                        child: Text(
+                          shoppingCartProductsList.length.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                   
+                   
+                    
+                    ),
+                 ),
+                 ],
                ),
 
+
+              // for person icon
                IconButton(
               onPressed: (){
                 setState(() {

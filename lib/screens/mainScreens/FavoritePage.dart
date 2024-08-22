@@ -52,6 +52,8 @@ class FavoritePage extends StatelessWidget {
           const SizedBox(height: 30,),
         // for the choosen favorite items in gridview
           MyProductsGridview(itemsList: favoriteProductsList), 
+
+           const SizedBox(height: 20,),
           
       
         ],
