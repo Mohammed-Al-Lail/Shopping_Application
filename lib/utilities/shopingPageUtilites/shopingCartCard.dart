@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 import 'package:shoping_center_project/screens/productdetailsScreen/productDetailsPage.dart';
 
@@ -47,7 +49,7 @@ class _shoppingCartCardState extends State<shoppingCartCard> {
         ),
 
         onDismissed: (direction) { // function
-          shoppingCartProductsList.remove(widget.product); // remove the product
+          Provider.of<productProvider>(context, listen: false).removFromShoppingCartList(widget.product); // remove the product
           
         },
 
@@ -115,9 +117,8 @@ class _shoppingCartCardState extends State<shoppingCartCard> {
                   IconButton( // deacreas button
                     onPressed: (){
                       if(widget.product.quantity>1){
-                        setState(() {
-                          widget.product.quantity--;
-                        });
+
+                        Provider.of<productProvider>(context,listen: false).decreaseQuantity(widget.product);
                       }
                     }, 
                     icon: Container(
@@ -150,9 +151,7 @@ class _shoppingCartCardState extends State<shoppingCartCard> {
                   IconButton( //add button
                     onPressed: (){
                       if(widget.product.quantity<10){
-                        setState(() {
-                          widget.product.quantity++;
-                        });
+                        Provider.of<productProvider>(context,listen: false).increasQuantity(widget.product);
                       }
                     }, 
                     icon: Container(

@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoping_center_project/classes/Product.dart';
-import 'package:shoping_center_project/classes/categories.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/AdvSlider.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/AllCategories.dart';
 import 'package:shoping_center_project/utilities/HomePageutilites/MyAppar.dart';
@@ -22,27 +20,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  // method to update suggestedList
-    List<Product> updatedList(){
-
-        suggestedProductsList.clear(); // remove everything on the list to fill it again 
-
-         while(suggestedProductsList.length!=8){ // The number of products on the suggested Products list  
-
-          int randomCategoryIndex= Random().nextInt(allCategoriesList.length); // random number to choose random category
-          int randomProductIndex = Random().nextInt( allCategoriesList[randomCategoryIndex].productsList.length); // random number to choose random product from the choosen category
-
-         Product methodProduct= allCategoriesList[randomCategoryIndex].productsList[ randomProductIndex ]; // creat an object of product (random product) 
-    
-         if(!suggestedProductsList.contains(methodProduct)){ // check that the random product does not exist on the suggested list
-             suggestedProductsList.add(methodProduct); // add it if it does not exsist
-         }      
-    } 
-      return suggestedProductsList; // return the list
-   
-
   
-  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,11 +89,17 @@ class _HomePageState extends State<HomePage> {
 
 
                 
-            // suggeted items in gridview
+            // suggeted items in gridview using provider package , {consumer}
+              Consumer<productProvider>(
+                builder: (context, val, child) {
+                  val.addTosuggestedList();
+                  return MyProductsGridview( itemsList: val.suggestedProductsList );
+                
+                },
+                
+                ),
             
-               MyProductsGridview(
-                itemsList: updatedList() // see the method above
-                     ),
+               
 
 
               const SizedBox(height: 20,),

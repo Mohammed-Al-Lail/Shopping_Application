@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
-import 'package:shoping_center_project/classes/Product.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/utilities/shopingPageUtilites/TotalPriceContainer.dart';
 import 'package:shoping_center_project/utilities/shopingPageUtilites/shopingCartCard.dart';
 
@@ -40,7 +41,7 @@ class _ShopingPageState extends State<ShopingPage> {
     ),
 
 
-    body: shoppingCartProductsList.isEmpty? // the body will depend on if there was items on the shooping cart list or not
+    body: Provider.of<productProvider>(context, listen: true).shoppingCartProductsList.isEmpty? // the body will depend on if there was items on the shooping cart list or not
     
      Column( // if the list was empty
     
@@ -81,36 +82,41 @@ class _ShopingPageState extends State<ShopingPage> {
     
     :  // The second option....
 
-    Column( // if the list was not empty
+    Consumer<productProvider>( // from provider package 
+      builder: (context, myProvider, _ ) {
 
-      children: [
-
-        const SizedBox(height: 30,),
-
-        Expanded(
-          child: ListView.separated(
-          
-            itemCount: shoppingCartProductsList.length,
-          
-            itemBuilder: (context, index) {
-          
-              return shoppingCartCard(product: shoppingCartProductsList[index]);
-               
-            },
-            separatorBuilder: (context, index) => const SizedBox(height: 20,),
-          ),
-        ),
-
-       const SizedBox(height: 20,),
-
-
-      // The Total price container
-        const TotalPriceContainer()
-
+        return Column( // if the list was not empty
+        
+          children: [
+        
+            const SizedBox(height: 30,),
+        
+            Expanded(
+              child: ListView.separated(
+              
+                itemCount: myProvider.shoppingCartProductsList.length,
+              
+                itemBuilder: (context, index) {
+              
+                  return shoppingCartCard(product: myProvider.shoppingCartProductsList[index]);
+                   
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 20,),
+              ),
+            ),
+        
+           const SizedBox(height: 20,),
         
         
-
-      ],
+          // The Total price container
+            const TotalPriceContainer()
+        
+            
+            
+        
+          ],
+        );
+      }
     ),
 
     );

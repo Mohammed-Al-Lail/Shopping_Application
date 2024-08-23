@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 
 class AnimatedHeart extends StatefulWidget {
@@ -64,13 +66,10 @@ class _AnimatedHeartState extends State<AnimatedHeart> with TickerProviderStateM
       widget.product.isFav = !widget.product.isFav ;
     });
 
-    if(  widget.product.isFav && !favoriteProductsList.contains(widget.product) ){ // if the product was favorite and does not exist already on the favorite list
+// use the method on the provider and dont forget tm make {listen = false}
+    Provider.of<productProvider>(context, listen: false).addToFavoriteList(widget.product);
 
-      favoriteProductsList.add(widget.product); // add the product to the favorite List
-    }
-    else {
-      favoriteProductsList.remove(widget.product); // remove the product from the favorite list
-    }
+   
 
   } // End of the method
 

@@ -28,12 +28,3 @@ class Product{
 
 
 
-// List of the suggested products (from diffrent categories)
-List <Product> suggestedProductsList = [];
-
-// This is a List of the favorite Products
-List<Product> favoriteProductsList = []; // we will add to this list the favorite products
-
-
-// This List will have the products exist on the shopping cart
-List<Product> shoppingCartProductsList = [];

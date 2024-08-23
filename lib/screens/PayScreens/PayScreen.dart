@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoping_center_project/classes/Product.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/utilities/loginPageUtilites/loginButton.dart';
 
 class PayScreen extends StatefulWidget {
@@ -48,8 +49,9 @@ final List monthsList = [01,02,03,04,05,06,07,08,09,10,11,12];
 
     
     if(isValid()){
-      
-         shoppingCartProductsList.clear(); // clear the items from shopping page
+                                  //make the listen: true since we did not use method from my provider class
+         Provider.of<productProvider>(context, listen: true).shoppingCartProductsList.clear(); // clear the items from shopping page
+
 
          ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

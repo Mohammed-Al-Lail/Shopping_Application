@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/Providers/productProvider.dart';
-import 'package:shoping_center_project/screens/LoginScreens/logIn.dart';
+//import 'package:shoping_center_project/screens/LoginScreens/logIn.dart';
 
 
 void main() {
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return ChangeNotifierProvider( // from provider packge
+
       create: (context) => productProvider(),
 
       child: const MaterialApp(

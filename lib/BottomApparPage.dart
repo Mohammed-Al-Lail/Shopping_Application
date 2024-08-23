@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shoping_center_project/classes/Product.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/screens/mainScreens/FavoritePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/HomePage.dart';
 import 'package:shoping_center_project/screens/mainScreens/ShoppingPage.dart';
@@ -135,38 +135,43 @@ List <Widget> screensList = [
                  
                  ),
 
-                 Visibility( // using Visibility widget to hide the container that display the number of items on the shopping cart {if it was empty}
-                  visible: shoppingCartProductsList.isNotEmpty ? true : false, // if the list was not empty show the numer of items , else not
+                 Consumer<productProvider>(
+                   builder: (context, myProvider , _) {
 
-                   child: Positioned( // with Positioned widget we can controls where a child of a [Stack] is positioned.
-                    right: 1,
-                    
-                    
-                    child: Container( // the container which will have the number of items on the shopping cart
-                   
-                      width: 20,
-                      height: 20,
-                   
-                      decoration:  BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red.withOpacity(0.9)
-                      ),
-                   
-                      child: Center(
-                        child: Text(
-                          shoppingCartProductsList.length.toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold
+                     return Visibility( // using Visibility widget to hide the container that display the number of items on the shopping cart {if it was empty}
+                      visible: myProvider.shoppingCartProductsList.isNotEmpty ? true : false, // if the list was not empty show the numer of items , else not
+                     
+                       child: Positioned( // with Positioned widget we can controls where a child of a [Stack] is positioned.
+                        right: 1,
+                        
+                        
+                        child: Container( // the container which will have the number of items on the shopping cart
+                       
+                          width: 20,
+                          height: 20,
+                       
+                          decoration:  BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.red.withOpacity(0.9)
+                          ),
+                       
+                          child: Center(
+                            child: Text(
+                              myProvider.shoppingCartProductsList.length.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                   
-                   
-                    
-                    ),
+                       
+                       
+                        
+                        ),
+                     );
+                   }
                  ),
                  ],
                ),

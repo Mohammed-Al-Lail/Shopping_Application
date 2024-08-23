@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/classes/Product.dart';
 
 
@@ -43,9 +45,8 @@ class _addTOCartButtonState extends State<addTOCartButton> {
 // method to handle adding new product button
   void addToSoppingCart(){ 
 
-    if( !shoppingCartProductsList.contains(widget.product)){
-
-      shoppingCartProductsList.add(widget.product);
+  //if the product was added successfully to the list {listen = false} since we are using method
+    if( Provider.of<productProvider>(context , listen: false).addToShoppingCartList(widget.product)   ){
 
       // show snackbar
       ScaffoldMessenger.of(context).showSnackBar(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shoping_center_project/classes/Product.dart';
+import 'package:provider/provider.dart';
+import 'package:shoping_center_project/Providers/productProvider.dart';
 import 'package:shoping_center_project/utilities/commonUtilites/MyProductsGridview.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -31,7 +32,7 @@ class FavoritePage extends StatelessWidget {
     ),
 
 
-    body:  favoriteProductsList.isEmpty?  // is the favorit list empty ?
+    body:   Provider.of<productProvider>(context, listen: true).favoriteProductsList.isEmpty?  // is the favorit list empty ?
 
         const Center(  // if the list was empty
           child: Text(
@@ -50,8 +51,14 @@ class FavoritePage extends StatelessWidget {
         children: [
       
           const SizedBox(height: 30,),
+
         // for the choosen favorite items in gridview
-          MyProductsGridview(itemsList: favoriteProductsList), 
+          Consumer<productProvider>(
+            
+            builder: (context, myProvider , _ ) {
+              return MyProductsGridview(itemsList:myProvider.favoriteProductsList );
+            }
+          ), 
 
            const SizedBox(height: 20,),
           
