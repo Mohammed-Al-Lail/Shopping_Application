@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:shoping_center_project/BottomApparPage.dart';
 import 'package:shoping_center_project/classes/Person.dart';
 import 'package:shoping_center_project/screens/EditScreen/EditScreen.dart';
-import 'package:shoping_center_project/utilities/profilePageUtilites/profileDescreption.dart';
 import 'package:shoping_center_project/utilities/profilePageUtilites/profilePageinfo.dart';
 
 class profilePage extends StatelessWidget {
